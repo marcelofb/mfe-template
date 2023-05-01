@@ -1,21 +1,24 @@
 import { StylesProvider, createGenerateClassName } from '@material-ui/core'
 import React from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
-
-import Pricing from './components/Pricing'
-import Landing from './components/Landing'
+import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
 
 const generateClassName = createGenerateClassName({
-    productionPrefix: 'ma'
+    productionPrefix: 'au'
 })
 
-export default ({ history }) => {
+export default ({ history, onSignIn }) => {
     return (
         <StylesProvider generateClassName={generateClassName}>
             <Router history={history}>
                 <Switch>
-                    <Route exact path="/pricing" component={Pricing} />
-                    <Route path="/" component={Landing} />
+                    <Route path="/auth/signin">
+                        <SignIn onSignIn={onSignIn} />
+                    </Route>
+                    <Route path="/auth/signup">
+                        <SignUp onSignIn={onSignIn} />
+                    </Route>
                 </Switch>
             </Router>
         </StylesProvider>
